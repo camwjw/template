@@ -2,7 +2,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
-
   grunt.registerTask('default', ['watch']);
 
   grunt.initConfig({
@@ -10,8 +9,6 @@ module.exports = function(grunt) {
       js: {
         files: {
           'assets/js/script.js': [
-              'bower_components/jquery/dist/jquery.js',
-              'bower_components/waypoints/lib/noframework.waypoints.js',
               'assets/components/js/*.js'
             ]
         }, //files
@@ -28,7 +25,7 @@ module.exports = function(grunt) {
           'assets/css/styles.css': 'assets/components/sass/*.sass'
         }, //files
         options: {
-          style: 'expanded'
+          style: 'compressed'
         } // options
       } // dist
     }, // sass
@@ -36,8 +33,9 @@ module.exports = function(grunt) {
     watch: {
       options: { livereload: true },
       script: {
-        files: ['assets/components/js/*.js','bower_components/*.js'],
-        tasks: ['uglify']
+        files: ['assets/components/js/*.js'],
+        tasks: ['uglify'],
+        sourceMap: true
       }, //script
       sass: {
         files: ['assets/components/sass/*.sass'],
